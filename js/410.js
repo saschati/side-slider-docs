@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[410],{2410:function(t,e,n){n.r(e),n.d(e,{default:function(){return s}});var r=n(2304);function s(t,e){const n=e*t.getHorizon(),s=t.getReverseFinishedPosition();t.getCurrent().style.transform=`translate(${s}px, -${n}px)`,t.getCurrent().style.opacity=(0,r.Z)(e,3)}}}]);
