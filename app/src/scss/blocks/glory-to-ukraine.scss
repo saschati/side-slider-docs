@@ -1,0 +1,46 @@
+@use 'src/scss/core/functions' as f;
+@use 'src/scss/core/mixin' as m;
+
+.glory-to-ukraine {
+  @include m.flex($jc: center);
+
+  padding: 80px 214px 83px 161px;
+
+  &__wrapper {
+    padding-top: 5px;
+    overflow: hidden;
+
+    width: 370px;
+    height: 210px;
+  }
+
+  &__slider {
+    position: relative;
+
+    margin-left: -185px;
+
+    height: 200px;
+    @include m.flex();
+  }
+
+  &__slide {
+    flex-shrink: 0;
+    padding: 10px;
+
+    width: 170px;
+
+    @include m.relative(20px, left);
+    @include m.text($lh: 180px, $ta: center);
+
+    &_bg {
+      &_blue {
+        background-color: f.color(glory-to-ukrain-blue);
+        box-shadow: 0 0 5px 2px f.color(glory-to-ukrain-blue-light);
+      }
+      &_yellow {
+        background-color: f.color(glory-to-ukrain-yellow);
+        box-shadow: 0 0 5px 2px f.color(glory-to-ukrain-yellow-light);
+      }
+    }
+  }
+}

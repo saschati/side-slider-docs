@@ -1,0 +1,95 @@
+@use 'src/scss/core/mixin' as m;
+@use 'src/scss/core/functions' as f;
+@use 'src/scss/core/title' as t;
+
+.tape {
+  position: relative;
+
+  &_jc {
+    &_end {
+      justify-content: flex-end;
+    }
+  }
+
+  &_type {
+    &_counter {
+      counter-reset: tape-count;
+    }
+    &_left, &_right {
+      &:after {
+        z-index: 1;
+        content: 'Border';
+        position: absolute;
+
+        @include m.flex(center);
+        @include t.title(h5);
+        @include m.text($c: f.color(heading));
+
+        background-color: f.color(white);
+
+        @include m.box(100px, 170px);
+      }
+      &:before {
+        z-index: 2;
+        content: '';
+        position: absolute;
+
+        box-shadow: 1px 0 1px black;
+
+        @include m.box(1px, 170px);
+      }
+    }
+    &_right {
+      &:after {
+        @include m.coords($r: 0);
+      }
+      &:before {
+        @include m.coords($r: 100px);
+      }
+    }
+    &_left {
+      &:after {
+        @include m.coords($l: 0);
+      }
+      &:before {
+        @include m.coords($l: 100px);
+      }
+    }
+  }
+
+  &_direction {
+    @include m.flex($ai: center);
+    height: 200px;
+  }
+
+  &__item {
+    flex-shrink: 0;
+
+    @include m.flex(center);
+    @include m.box(100px, 170px);
+
+    &_direction {
+      @include m.relative(20px, left);
+    }
+
+    &_type {
+      &_new-block, &_next-clone:nth-child(2) {
+        border: 2px dashed f.color(grey);
+      }
+
+      &_next-clone:nth-child(2) {
+        background-color: transparent;
+      }
+    }
+
+    &_mod {
+      &_count {
+        &:before {
+          counter-increment: tape-count;
+
+          content: counter(tape-count);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+@use 'src/scss/core/page' as page;
+@use 'src/scss/core/functions' as f;
+@use 'src/scss/core/mixin' as m;
+@use 'src/scss/core/screen' as screen;
+
+.homepage {
+  @include page.style;
+
+  --scrollbar-width: 12px;
+  --scrollbar-radius: 0;
+  --scrollbar-thumb-bg-color: #{f.color(dark)};
+
+  overflow-x: hidden;
+
+  &__container {
+    margin: auto;
+    width: 1400px;
+  }
+
+  &__alert {
+    padding: 40px 214px 40px 161px;
+  }
+
+  &__tape {
+    &:after {
+      content: "";
+      position: absolute;
+
+      @include m.coords($r: -630px, $t: 0);
+      @include m.box(630px, 100px);
+
+      background-color: f.color(grey);
+
+      opacity: 0.75;
+    }
+
+    &_mod {
+      &_no-overflow {
+        overflow: visible;
+      }
+    }
+
+    &_options {
+      &_elasticDistance {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  &__sidebar {
+    --scrollbar-width: 0px;
+
+    overflow-y: auto;
+
+    position: fixed;
+
+    z-index: 100;
+
+    height: calc(100% - 120px);
+    max-width: 350px;
+
+    padding-right: 20px;
+
+    @include m.coords($t: 120px, $l: 25px);
+  }
+}
+
+.is-visible, .is-runner, .is-active {
+  will-change: transform, opacity;
+}

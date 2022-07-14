@@ -1,0 +1,129 @@
+@use 'src/scss/core/mixin' as m;
+@use 'src/scss/core/functions' as f;
+
+.sidebar-three {
+  --sidebar-three-line-color: #{f.color(primary)};
+  --sidebar-three-line-type: solid;
+  --sidebar-three-text-color: #{f.color(heading)};
+  --sidebar-three-link-color: #{f.color(third)};
+  --sidebar-three-fix-color: #{f.color(white)};
+
+  display: grid;
+
+  grid-template-columns: 2px 1fr;
+  grid-column-gap: 22px;
+
+  @include m.text($c: f.v(sidebar-three-text-color));
+
+  &_type {
+    &_item {
+      margin-left: 5px;
+    }
+  }
+
+  &__line {
+    grid-row: 1 / -1;
+    grid-column: 1;
+
+    &_mode {
+      &_line {
+        margin-top: 12px;
+        margin-bottom: 17px;
+
+        border-left: 2px f.v(sidebar-three-line-type) f.v(sidebar-three-line-color);
+      }
+    }
+  }
+
+  &__item, &__opener, &__line, &__name {
+    display: block;
+  }
+
+  &__name {
+    cursor: pointer;
+
+    position: relative;
+
+    &:hover::before {
+      content: "#";
+      position: absolute;
+
+      @include m.coords($t: 0, $l: -12px);
+
+      color: f.v(sidebar-three-link-color);
+    }
+  }
+
+  &__item, &__opener {
+    margin-bottom: 5px;
+  }
+
+  &__opener {
+    @include m.flex();
+  }
+
+  &__opener &__name {
+    margin-right: 10px;
+  }
+
+  &__trigger {
+    cursor: pointer;
+
+    @include m.text($w: 900);
+  }
+
+  &__item {
+    position: relative;
+
+     &:after {
+      content: "";
+      position: absolute;
+
+      @include m.box(10px, 33px);
+
+      @include m.coords($t: 12px, $l: -24px);
+
+      border-top: 2px f.v(sidebar-three-line-type) f.v(sidebar-three-line-color);
+    }
+
+    &--open {
+      &:before {
+        content: "";
+        position: absolute;
+
+        z-index: 0;
+
+        @include m.box(38px, 33px);
+        @include m.coords($t: 12px, $l: -24px);
+
+        border-left: 2px f.v(sidebar-three-line-type) f.v(sidebar-three-line-color);
+        border-bottom: 2px f.v(sidebar-three-line-type) f.v(sidebar-three-line-color);
+      }
+    }
+  }
+
+  &__item_type_three > & {
+    display: none;
+  }
+
+  &__item--open > & {
+    display: grid;
+  }
+
+  &__item--open:last-child > & > &__items {
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+
+      background-color: f.v(sidebar-three-fix-color);
+
+      margin-top: 12px;
+      margin-bottom: 15px;
+
+      @include m.coords($t: 2px, $l: -53px);
+      @include m.box(2px, calc(100% - 25px));
+    }
+  }
+}
